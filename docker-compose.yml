@@ -1,6 +1,7 @@
 version: "3.11" # Docker ComposeAPI
+
 services:
-  app: # Django
+  app: # Django 
     build:
       context: .
       args:
@@ -10,3 +11,20 @@ services:
     volumes:
       - ./app:/app
     command: sh -c "python manage.py runserver 0.0.0.0:8000"
+    environment:
+      - DB_HOST=db
+      - DB_NAME=youtube
+      - DB_USER=dayeonkimm
+      - DB_PASSWORD=password123
+    depends_on:
+      - db
+    
+
+  db: # PostgreSQL Database
+   image: postgresql:16-alpine
+   volumes: 
+    - ./data/db:/var/lib/postgresql/data
+   environment:
+     - POSTGRES_DB=youtube
+     - POSTGRES_USER=dayeonkimm
+     - POSTGRES_PASSWORD=password123
