@@ -25,9 +25,20 @@ CUSTOM_USER_APPS = [
     "videos.apps.VideosConfig",
     "rest_framework",
     "drf_spectacular",
+    "channels",
+    "chat.apps.ChatConfig",
+    "daphne",
 ]
 
 INSTALLED_APPS = DJANGO_SYSTEM_APPS + CUSTOM_USER_APPS
+
+# Channels를 사용하기 위한 설정
+ASGI_APPLICATION = "app.asgi.application"
+
+# Channels 설정
+CHANNEL_LAYERS = {
+    "default": {"BACKEND": "channels.layers.InMemoryChannelLayer"},
+}
 
 REST_FRAMEWORK = {"DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema"}
 
