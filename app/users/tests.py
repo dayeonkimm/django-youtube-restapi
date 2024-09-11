@@ -27,7 +27,7 @@ class UserTestCase(TestCase):
         user = get_user_model().objects.create_superuser(
             email=email, password=password
             )
-        
+         
         # 슈퍼유저
         self.assertTrue(user.is_superuser)
         self.assertTrue(user.is_staff)
